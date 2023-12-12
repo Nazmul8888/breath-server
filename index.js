@@ -27,11 +27,18 @@ async function run() {
     await client.connect();
 
     const breathCollection = client.db('breathDB').collection('news');
+    const missionCollection = client.db('breathDB').collection('mission')
 
     app.get('/news', async(req,res)=>{
         const cursor = breathCollection.find();
         const result = await cursor.toArray();
         res.send(result);
+    })
+
+    app.get('/mission', async(req,res)=>{
+      const cursor = missionCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
     })
 
 
